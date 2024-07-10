@@ -5,7 +5,7 @@ import psycopg2
 conn = st.connection("postgresql", type="sql")
 
 # Perform query.
-df = conn.query('SELECT * FROM transactions;', ttl="10m")
+#df = conn.query('SELECT * FROM transactions;', ttl="10m")
 st.dataframe('transactions')
 # Print results.
 #for row in df.itertuples():
