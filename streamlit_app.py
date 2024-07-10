@@ -1,12 +1,12 @@
-# example/st_app.py
-
 import streamlit as st
-from streamlit_gsheets import GSheetsConnection
-import numpy as np
+import psycopg2
 
-url = "https://docs.google.com/spreadsheets/d/1BtV9yJv4YosVkH48ZTXkXBeX2knpaS8Mu6QfOP59heo/edit?gid=0#gid=0"
+# Initialize connection.
+conn = st.connection("db_streamlit", type="sql")
 
-conn = st.experimental_connection("gsheets", type=GSheetsConnection)
-
-data = conn.read(spreadsheet=url, usecols=[0, 1])
-st.dataframe(data)
+# Perform query.
+df = conn.query('SELECT * FROM transactions;', ttl="10m")
+st.dataframe('transactions')
+# Print results.
+#for row in df.itertuples():
+  #  st.write(f"{row.name} has a :{row.pet}:")
