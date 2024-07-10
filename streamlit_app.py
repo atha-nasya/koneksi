@@ -2,7 +2,7 @@ import streamlit as st
 import psycopg2
 
 # Initialize connection.
-conn = st.connection("db_streamlit", type="sql")
+conn = st.connection("postgresql", type="sql")
 
 # Perform query.
 df = conn.query('SELECT * FROM transactions;', ttl="10m")
